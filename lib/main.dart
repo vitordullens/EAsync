@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:easync_ihc/screens/login_screen.dart';
+import 'package:easync_ihc/root_page.dart';
+import 'package:easync_ihc/utilities/auth.dart';
 
 void main() => runApp(MyApp());
 
@@ -10,7 +11,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'EAsync',
       debugShowCheckedModeBanner: false,
-      home: LoginScreen(),
+      home: RootPage(auth: new Auth()),
     );
   }
 }

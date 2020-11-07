@@ -1,11 +1,12 @@
-import 'dart:convert';
-import 'dart:async' show Future;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:easync_ihc/utilities/constants.dart';
-import 'package:flutter/services.dart' show rootBundle;
+import 'package:easync_ihc/utilities/auth.dart';
 
 class LoginScreen extends StatefulWidget {
+  LoginScreen({this.auth, this.onSignedIn});
+  final Auth auth;
+  final VoidCallback onSignedIn;
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
@@ -26,17 +27,12 @@ class _LoginScreenState extends State<LoginScreen> {
     }
   }
 
-  Future<String> getJson() async {
-    return await rootBundle.loadString('assets/login.json');
-  }
-
   void validateAndSubmit() async {
     if (validateAndSave()) {
       try {
-        Map<String, dynamic> _data = jsonDecode(await getJson());
-        if (_email == _data['email'] && _password == _data['password']) {
-          print("igualzin");
-        }
+        String userId = await widget.auth.signIn(_email, _password);
+        print('Signed in: $userId');
+        widget.onSignedIn();
       } catch (e) {
         print('Error: $e');
       }
@@ -184,7 +180,18 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        SizedBox(height: 100.0),
+                        SizedBox(height: 50.0),
+                        Text(
+                          'EAsync',
+                          style: TextStyle(
+                            color: Color(0xFFFFFFFF),
+                            letterSpacing: 1.5,
+                            fontSize: 34.0,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: 'OpenSans',
+                          ),
+                        ),
+                        SizedBox(height: 50.0),
                         _buildEmailTF(),
                         SizedBox(
                           height: 30.0,
