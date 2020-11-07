@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:convert';
 import 'dart:async' show Future;
 import 'package:path_provider/path_provider.dart';
 
@@ -17,16 +18,17 @@ class User {
     return File('$path/user.json');
   }
 
-  Future<File> writeUser(var user) async {
+  Future<File> writeUser(Map<String, dynamic> user) async {
     final file = await _localFile;
-    return file.writeAsString('$user');
+    var json = jsonEncode(user);
+    return file.writeAsString('$json');
   }
 
-  Future<String> readUser() async {
+  Future<Map<String, dynamic>> readUser() async {
     try {
       final file = await _localFile;
-      String data = await file.readAsString();
-      return data;
+      Map<String, dynamic> user = jsonDecode(await file.readAsString());
+      return user;
     } catch (e) {
       return null;
     }
