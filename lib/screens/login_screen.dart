@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:easync_ihc/utilities/constants.dart';
 import 'package:easync_ihc/utilities/auth.dart';
+import 'package:easync_ihc/utilities/user.dart';
 
 class LoginScreen extends StatefulWidget {
   LoginScreen({this.auth, this.onSignedIn});
@@ -33,8 +34,10 @@ class _LoginScreenState extends State<LoginScreen> {
     if (validateAndSave()) {
       try {
         String userId = await widget.auth.signIn(_email, _password);
+        String data = await User().readUser();
         print('Signed in: $userId');
-        if (userId == '1') {
+        print('Data: $data');
+        if (userId != '0') {
           setState(() {
             _isValid = true;
           });

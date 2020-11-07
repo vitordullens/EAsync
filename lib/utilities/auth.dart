@@ -1,3 +1,4 @@
+import 'user.dart';
 import 'dart:convert';
 import 'dart:async' show Future;
 import 'package:flutter/services.dart';
@@ -12,7 +13,9 @@ class Auth {
     Map<String, dynamic> data =
         jsonDecode(await _getJson('assets/json/login.json'));
     if (email == data['email'] && password == data['password']) {
-      return jsonDecode(await _getJson('assets/json/user.json'));
+      var user = jsonDecode(await _getJson('assets/json/user.json'));
+      await User().writeUser(user);
+      return user;
     }
     return {'id': '0'};
   }
