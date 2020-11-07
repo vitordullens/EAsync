@@ -1,0 +1,11 @@
+{
+  "id": "1",
+  "nome": "Rose",
+  "email": "rose@aluno.com",
+  "cidade": "Brasilia",
+  "pais": "Brasil",
+  "cpf": "123.456.789-00",
+  "serie": "1 ano",
+  "turma": "A",
+  "descricao": "Uma aluna comum"
+}
