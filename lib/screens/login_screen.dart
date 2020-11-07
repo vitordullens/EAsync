@@ -14,6 +14,8 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final formKey = GlobalKey<FormState>();
 
+  bool _isValid = true;
+
   String _email;
   String _password;
 
@@ -32,7 +34,17 @@ class _LoginScreenState extends State<LoginScreen> {
       try {
         String userId = await widget.auth.signIn(_email, _password);
         print('Signed in: $userId');
-        widget.onSignedIn();
+        if (userId == '1') {
+          setState(() {
+            _isValid = true;
+          });
+          widget.onSignedIn();
+        }
+        if (userId == '0') {
+          setState(() {
+            _isValid = false;
+          });
+        }
       } catch (e) {
         print('Error: $e');
       }
@@ -62,6 +74,10 @@ class _LoginScreenState extends State<LoginScreen> {
               fontFamily: 'OpenSans',
             ),
             decoration: InputDecoration(
+              errorStyle: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
               border: InputBorder.none,
               contentPadding: EdgeInsets.only(top: 14.0),
               prefixIcon: Icon(
@@ -100,6 +116,10 @@ class _LoginScreenState extends State<LoginScreen> {
               fontFamily: 'OpenSans',
             ),
             decoration: InputDecoration(
+              errorStyle: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
               border: InputBorder.none,
               contentPadding: EdgeInsets.only(top: 14.0),
               prefixIcon: Icon(
@@ -197,6 +217,29 @@ class _LoginScreenState extends State<LoginScreen> {
                           height: 30.0,
                         ),
                         _buildPasswordTF(),
+                        SizedBox(height: 10.0),
+                        _isValid
+                            ? Text(
+                                ":)",
+                                style: TextStyle(color: Color(0xFF478DE0)),
+                              )
+                            : Container(
+                                padding: EdgeInsets.symmetric(
+                                  vertical: 10.0,
+                                ),
+                                width: 400,
+                                color: Color(0x4F4F4F4F),
+                                child: Text(
+                                  'usuário ou senha inválidos',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: Colors.red,
+                                    fontSize: 16.0,
+                                    fontWeight: FontWeight.bold,
+                                    fontFamily: 'OpenSans',
+                                  ),
+                                ),
+                              ),
                         _buildLoginBtn(),
                       ],
                     ),
