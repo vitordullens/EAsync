@@ -1,11 +1,10 @@
+import 'user.dart';
 import 'dart:convert';
 import 'dart:async' show Future;
 import 'package:flutter/services.dart';
 import 'package:flutter/services.dart' show rootBundle;
 
 class Auth {
-  bool signedIn = false;
-
   Future<String> _getJson(String str) async {
     return await rootBundle.loadString(str);
   }
@@ -14,14 +13,15 @@ class Auth {
     Map<String, dynamic> data =
         jsonDecode(await _getJson('assets/json/login.json'));
     if (email == data['email'] && password == data['password']) {
-      return jsonDecode(await _getJson('assets/json/user.json'));
+      var user = jsonDecode(await _getJson('assets/json/user.json'));
+      await User().writeUser(user);
+      return user;
     }
-    // return {'id': 0};
+    return {'id': '0'};
   }
 
   Future<String> signIn(String email, String password) async {
     var user = await _jsonAuth(email, password);
-    signedIn = true;
     return user['id'];
   }
 }

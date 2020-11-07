@@ -1,6 +1,7 @@
-import 'package:flutter/material.dart';
 import 'package:easync_ihc/utilities/auth.dart';
+import 'package:flutter/material.dart';
 import 'screens/login_screen.dart';
+import 'screens/home_screen.dart';
 
 class RootPage extends StatefulWidget {
   RootPage({this.auth});
@@ -20,6 +21,12 @@ class _RootPageState extends State<RootPage> {
     });
   }
 
+  void _signedOut() {
+    setState(() {
+      authStatus = AuthStatus.notSignedIn;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     switch (authStatus) {
@@ -29,10 +36,9 @@ class _RootPageState extends State<RootPage> {
           onSignedIn: _signedIn,
         );
       case AuthStatus.signedIn:
-        return Scaffold(
-          body: new Container(
-            child: Text("Entrei"),
-          ),
+        return new HomeScreen(
+          auth: widget.auth,
+          onSignedOut: _signedOut,
         );
     }
   }
