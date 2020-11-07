@@ -1,6 +1,9 @@
+import 'dart:convert';
+import 'dart:async' show Future;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:easync_ihc/utilities/constants.dart';
+import 'package:flutter/services.dart' show rootBundle;
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -17,16 +20,27 @@ class _LoginScreenState extends State<LoginScreen> {
     final form = formKey.currentState;
     if (form.validate()) {
       form.save();
-      print("Form is valid. Email: $_email, password: $_password");
       return true;
     } else {
-      print('Form is invalid');
       return false;
     }
   }
 
-  void validateAndSubmit() {
-    if (validateAndSave()) {}
+  Future<String> getJson() async {
+    return await rootBundle.loadString('assets/login.json');
+  }
+
+  void validateAndSubmit() async {
+    if (validateAndSave()) {
+      try {
+        Map<String, dynamic> _data = jsonDecode(await getJson());
+        if (_email == _data['email'] && _password == _data['password']) {
+          print("igualzin");
+        }
+      } catch (e) {
+        print('Error: $e');
+      }
+    }
   }
 
   Widget _buildEmailTF() {
@@ -111,7 +125,7 @@ class _LoginScreenState extends State<LoginScreen> {
       width: double.infinity,
       child: RaisedButton(
         elevation: 5.0,
-        onPressed: validateAndSave,
+        onPressed: validateAndSubmit,
         padding: EdgeInsets.all(15.0),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30.0),
