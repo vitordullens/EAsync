@@ -110,7 +110,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         body: Container(
           padding: EdgeInsets.symmetric(
-            horizontal: 40.0,
+            horizontal: 20.0,
             vertical: 120.0,
           ),
           width: double.infinity,
@@ -136,6 +136,42 @@ class _HomeScreenState extends State<HomeScreen> {
                       ).then(onGoBack);
                     },
                     color: Colors.blueGrey,
+                    child: Column(children: <Widget>[
+                      CircleAvatar(
+                          radius: 40,
+                          backgroundImage:
+                              AssetImage('assets/images/profile.png')),
+                      SizedBox(height: 10.0),
+                      Text(
+                        user == null
+                            ? 'Carregando...'
+                            : 'Nome: ${user['nome']}\nE-mail: ${user['email']}\nLocal: ${user['cidade']}, ${user['pais']}\nTurma: ${user['serie']} - ${user['turma']}',
+                        textAlign: TextAlign.start,
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ]),
+                  ),
+                  SizedBox(width: 10.0),
+                  RaisedButton(
+                    elevation: 5.0,
+                    padding: EdgeInsets.all(15.0),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30.0),
+                    ),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ProfileScreen(
+                                  user: user,
+                                )),
+                      ).then(onGoBack);
+                    },
+                    color: Colors.blueGrey[200],
                     child: Column(children: <Widget>[
                       CircleAvatar(
                           radius: 40,
