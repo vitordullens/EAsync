@@ -115,85 +115,54 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           width: double.infinity,
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  RaisedButton(
-                    elevation: 5.0,
-                    padding: EdgeInsets.all(15.0),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30.0),
-                    ),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => ProfileScreen(
-                                  user: user,
-                                )),
-                      ).then(onGoBack);
-                    },
-                    color: Colors.blueGrey,
-                    child: Column(children: <Widget>[
-                      CircleAvatar(
-                          radius: 40,
-                          backgroundImage:
-                              AssetImage('assets/images/profile.png')),
-                      SizedBox(height: 10.0),
+              RaisedButton(
+                elevation: 5.0,
+                padding: EdgeInsets.all(15.0),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30.0),
+                ),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ProfileScreen(
+                              user: user,
+                            )),
+                  ).then(onGoBack);
+                },
+                color: Colors.blueGrey,
+                child: Row(children: <Widget>[
+                  CircleAvatar(
+                      radius: 40,
+                      backgroundImage: AssetImage('assets/images/profile.png')),
+                  SizedBox(width: 20.0),
+                  Column(
+                    children: <Widget>[
+                      Text(
+                        "nome: \ne-mail: \nlocal: \nturma: ",
+                        style: TextStyle(
+                            fontSize: 16, fontWeight: FontWeight.normal),
+                      ),
+                    ],
+                  ),
+                  Column(
+                    children: <Widget>[
                       Text(
                         user == null
                             ? 'Carregando...'
-                            : 'Nome: ${user['nome']}\nE-mail: ${user['email']}\nLocal: ${user['cidade']}, ${user['pais']}\nTurma: ${user['serie']} - ${user['turma']}',
-                        textAlign: TextAlign.start,
+                            : '${user['nome']}\n${user['email']}\n${user['cidade']}, ${user['pais']}\n${user['serie']} - ${user['turma']}',
                         style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 12,
+                          fontSize: 16,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                    ]),
+                    ],
                   ),
-                  SizedBox(width: 10.0),
-                  RaisedButton(
-                    elevation: 5.0,
-                    padding: EdgeInsets.all(15.0),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30.0),
-                    ),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => ProfileScreen(
-                                  user: user,
-                                )),
-                      ).then(onGoBack);
-                    },
-                    color: Colors.blueGrey[200],
-                    child: Column(children: <Widget>[
-                      CircleAvatar(
-                          radius: 40,
-                          backgroundImage:
-                              AssetImage('assets/images/profile.png')),
-                      SizedBox(height: 10.0),
-                      Text(
-                        user == null
-                            ? 'Carregando...'
-                            : 'Nome: ${user['nome']}\nE-mail: ${user['email']}\nLocal: ${user['cidade']}, ${user['pais']}\nTurma: ${user['serie']} - ${user['turma']}',
-                        textAlign: TextAlign.start,
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 12,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ]),
-                  ),
-                ],
+                ]),
               ),
-              SizedBox(height: 50.0),
               RaisedButton(
                 elevation: 5.0,
                 onPressed: () => {},
