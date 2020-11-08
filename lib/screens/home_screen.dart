@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:easync_ihc/utilities/constants.dart';
+
 import 'profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:easync_ihc/utilities/auth.dart';
@@ -92,6 +94,204 @@ class _HomeScreenState extends State<HomeScreen> {
     setState(() {});
   }
 
+  Widget _buildProfile() {
+    return RaisedButton(
+      elevation: 5.0,
+      padding: EdgeInsets.all(15.0),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(30.0),
+      ),
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => ProfileScreen(
+                    user: user,
+                  )),
+        ).then(onGoBack);
+      },
+      color: Color(0xFF6CA8F1),
+      child: Row(children: <Widget>[
+        CircleAvatar(
+            radius: 40,
+            backgroundImage: AssetImage('assets/images/profile.png')),
+        SizedBox(width: 20.0),
+        Column(
+          children: <Widget>[
+            Text(
+              "nome: \ne-mail: \nlocal: \nturma: ",
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal),
+            ),
+          ],
+        ),
+        Column(
+          children: <Widget>[
+            Text(
+              user == null
+                  ? 'Carregando...'
+                  : '${user['nome']}\n${user['email']}\n${user['cidade']}, ${user['pais']}\n${user['serie']} - ${user['turma']}',
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
+      ]),
+    );
+  }
+
+  Widget _buildDisciplines() {
+    return Container(
+        height: 220.0,
+        decoration: kBoxDecorationStyle,
+        width: double.infinity,
+        padding: EdgeInsets.symmetric(
+          horizontal: 20.0,
+          vertical: 10.0,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(
+              "Disciplinas",
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold),
+            ),
+            SizedBox(height: 10.0),
+            Row(
+              children: [
+                RaisedButton(
+                  onPressed: () => {},
+                  elevation: 10.0,
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 20.0,
+                    vertical: 10.0,
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      Icon(Icons.streetview_outlined),
+                      SizedBox(width: 10.0),
+                      Text("Geografia   ")
+                    ],
+                  ),
+                ),
+                SizedBox(width: 10.0),
+                RaisedButton(
+                  onPressed: () => {},
+                  elevation: 10.0,
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 20.0,
+                    vertical: 10.0,
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  child: Row(
+                    children: <Widget>[
+                      Icon(Icons.color_lens),
+                      SizedBox(width: 10.0),
+                      Text("Artes           ")
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            Row(
+              children: [
+                RaisedButton(
+                  onPressed: () => {},
+                  elevation: 10.0,
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 20.0,
+                    vertical: 10.0,
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      Icon(Icons.colorize),
+                      SizedBox(width: 10.0),
+                      Text("Quimica      ")
+                    ],
+                  ),
+                ),
+                SizedBox(width: 10.0),
+                RaisedButton(
+                  onPressed: () => {},
+                  elevation: 10.0,
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 20.0,
+                    vertical: 10.0,
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  child: Row(
+                    children: <Widget>[
+                      Icon(Icons.bookmark),
+                      SizedBox(width: 10.0),
+                      Text("Português  ")
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            Row(
+              children: [
+                RaisedButton(
+                  onPressed: () => {},
+                  elevation: 10.0,
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 20.0,
+                    vertical: 10.0,
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      Icon(Icons.calculate),
+                      SizedBox(width: 10.0),
+                      Text("Matemática")
+                    ],
+                  ),
+                ),
+                SizedBox(width: 10.0),
+                RaisedButton(
+                  onPressed: () => {},
+                  elevation: 10.0,
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 20.0,
+                    vertical: 10.0,
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  child: Row(
+                    children: <Widget>[
+                      Icon(Icons.local_florist_rounded),
+                      SizedBox(width: 10.0),
+                      Text("Biologia      ")
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ));
+  }
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -99,6 +299,7 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Scaffold(
         appBar: AppBar(
           title: Text("EAsync"),
+          backgroundColor: Color(0xFF6CA8F1),
           actions: <Widget>[
             FlatButton(
                 onPressed: _signOut,
@@ -111,58 +312,15 @@ class _HomeScreenState extends State<HomeScreen> {
         body: Container(
           padding: EdgeInsets.symmetric(
             horizontal: 20.0,
-            vertical: 120.0,
+            vertical: 70.0,
           ),
           width: double.infinity,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              RaisedButton(
-                elevation: 5.0,
-                padding: EdgeInsets.all(15.0),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30.0),
-                ),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => ProfileScreen(
-                              user: user,
-                            )),
-                  ).then(onGoBack);
-                },
-                color: Colors.blueGrey,
-                child: Row(children: <Widget>[
-                  CircleAvatar(
-                      radius: 40,
-                      backgroundImage: AssetImage('assets/images/profile.png')),
-                  SizedBox(width: 20.0),
-                  Column(
-                    children: <Widget>[
-                      Text(
-                        "nome: \ne-mail: \nlocal: \nturma: ",
-                        style: TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.normal),
-                      ),
-                    ],
-                  ),
-                  Column(
-                    children: <Widget>[
-                      Text(
-                        user == null
-                            ? 'Carregando...'
-                            : '${user['nome']}\n${user['email']}\n${user['cidade']}, ${user['pais']}\n${user['serie']} - ${user['turma']}',
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  ),
-                ]),
-              ),
+              _buildProfile(),
+              _buildDisciplines(),
               RaisedButton(
                 elevation: 5.0,
                 onPressed: () => {},
@@ -170,11 +328,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30.0),
                 ),
-                color: Colors.white,
+                color: Color(0xFF6CA8F1),
                 child: Text(
                   'SINCRONIZAR',
                   style: TextStyle(
-                    color: Colors.black,
+                    color: Colors.white,
                     letterSpacing: 1.5,
                     fontSize: 18.0,
                     fontWeight: FontWeight.bold,

@@ -33,7 +33,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             Navigator.of(context).pop(true);
           });
           return AlertDialog(
-            title: Text('Perfil salvo com sucesso \n:)'),
+            title: Text('Perfil salvo com sucesso \n😊'),
             titleTextStyle: TextStyle(fontSize: 32, color: Colors.black),
           );
         });
@@ -42,9 +42,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomPadding: false,
+      resizeToAvoidBottomInset: true,
       appBar: AppBar(
         title: Text("Perfil"),
+        backgroundColor: Color(0xFF6CA8F1),
         leading: new IconButton(
           icon: new Icon(Icons.arrow_back),
           onPressed: () {
@@ -177,11 +178,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30.0),
                 ),
-                color: Colors.white,
+                color: Color(0xFF6CA8F1),
                 child: Text(
                   'SALVAR',
                   style: TextStyle(
-                    color: Colors.black,
+                    color: Colors.white,
                     letterSpacing: 1.5,
                     fontSize: 18.0,
                     fontWeight: FontWeight.bold,
