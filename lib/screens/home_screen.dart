@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:easync_ihc/utilities/auth.dart';
@@ -86,6 +88,10 @@ class _HomeScreenState extends State<HomeScreen> {
         false;
   }
 
+  FutureOr onGoBack(dynamic value) async {
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -124,8 +130,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => ProfileScreen()),
-                      );
+                            builder: (context) => ProfileScreen(
+                                  user: user,
+                                )),
+                      ).then(onGoBack);
                     },
                     color: Colors.blueGrey,
                     child: Column(children: <Widget>[
@@ -137,7 +145,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       Text(
                         user == null
                             ? 'Carregando...'
-                            : 'Nome: ${user['nome']}\nE-mail: ${user['email']}',
+                            : 'Nome: ${user['nome']}\nE-mail: ${user['email']}\nLocal: ${user['cidade']}, ${user['pais']}\nTurma: ${user['serie']} - ${user['turma']}',
                         textAlign: TextAlign.start,
                         style: TextStyle(
                           color: Colors.black,

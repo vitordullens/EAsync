@@ -13,8 +13,12 @@ class Auth {
     Map<String, dynamic> data =
         jsonDecode(await _getJson('assets/json/login.json'));
     if (email == data['email'] && password == data['password']) {
-      var user = jsonDecode(await _getJson('assets/json/user.json'));
-      await User().writeUser(user);
+      var user = await User().readUser();
+      if (user == null) {
+        print('entri aqui');
+        user = jsonDecode(await _getJson('assets/json/user.json'));
+        await User().writeUser(user);
+      }
       return user;
     }
     return {'id': '0'};
