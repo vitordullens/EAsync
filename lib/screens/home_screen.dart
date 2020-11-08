@@ -90,6 +90,20 @@ class _HomeScreenState extends State<HomeScreen> {
         false;
   }
 
+  Future<bool> _onSync() async {
+    return showDialog(
+        context: context,
+        builder: (context) {
+          Future.delayed(Duration(seconds: 2), () {
+            Navigator.of(context).pop(true);
+          });
+          return AlertDialog(
+            title: Text('Sicronização feita com sucesso \n😊'),
+            titleTextStyle: TextStyle(fontSize: 32, color: Colors.black),
+          );
+        });
+  }
+
   FutureOr onGoBack(dynamic value) async {
     setState(() {});
   }
@@ -323,7 +337,7 @@ class _HomeScreenState extends State<HomeScreen> {
               _buildDisciplines(),
               RaisedButton(
                 elevation: 5.0,
-                onPressed: () => {},
+                onPressed: _onSync,
                 padding: EdgeInsets.all(15.0),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30.0),
