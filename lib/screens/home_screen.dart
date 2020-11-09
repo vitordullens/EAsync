@@ -170,7 +170,7 @@ class _HomeScreenState extends State<HomeScreen> {
         decoration: kBoxDecorationStyle,
         width: double.infinity,
         padding: EdgeInsets.symmetric(
-          horizontal: 20.0,
+          horizontal: 10.0,
           vertical: 10.0,
         ),
         child: Column(
@@ -194,9 +194,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       context,
                       MaterialPageRoute(
                           builder: (context) => DisciplineScreen(
-                                content: discipline['geografia'],
-                                json: discipline
-                              )),
+                              content: discipline['geografia'],
+                              json: discipline)),
                     );
                   },
                   elevation: 10.0,

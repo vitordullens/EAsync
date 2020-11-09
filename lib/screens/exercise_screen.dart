@@ -71,7 +71,7 @@ class _ExerciseScreenState extends State<ExerciseScreen> {
                 Text("${widget.questions[0]}"),
                 TextFormField(
                   initialValue: widget.json['geografia']['capitulo 1']
-                              ['respostas'][0] !=
+                              ['respostas'] !=
                           null
                       ? "${widget.json['geografia']['capitulo 1']['respostas'][0]}"
                       : '',
@@ -90,7 +90,7 @@ class _ExerciseScreenState extends State<ExerciseScreen> {
                 Text("${widget.questions[1]}"),
                 TextFormField(
                   initialValue: widget.json['geografia']['capitulo 1']
-                              ['respostas'][1] !=
+                              ['respostas'] !=
                           null
                       ? "${widget.json['geografia']['capitulo 1']['respostas'][1]}"
                       : '',
@@ -102,7 +102,7 @@ class _ExerciseScreenState extends State<ExerciseScreen> {
                   ),
                   decoration: InputDecoration(
                     labelText: "Resposta",
-                    labelStyle: TextStyle(fontSize: 20),
+                    labelStyle: TextStyle(fontSize: 16),
                   ),
                 ),
                 SizedBox(height: 30),
