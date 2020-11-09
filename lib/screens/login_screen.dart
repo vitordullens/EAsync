@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:easync_ihc/utilities/constants.dart';
 import 'package:easync_ihc/utilities/auth.dart';
+import 'package:easync_ihc/utilities/constants.dart';
+import 'package:easync_ihc/utilities/discipline.dart';
 
 class LoginScreen extends StatefulWidget {
   LoginScreen({this.auth, this.onSignedIn});
@@ -37,6 +38,7 @@ class _LoginScreenState extends State<LoginScreen> {
           setState(() {
             _isValid = true;
           });
+          await Discipline().saveFile();
           widget.onSignedIn();
         }
         if (userId == '0') {

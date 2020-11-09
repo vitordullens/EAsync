@@ -15,7 +15,6 @@ class Auth {
     if (email == data['email'] && password == data['password']) {
       var user = await User().readUser();
       if (user == null) {
-        print('entri aqui');
         user = jsonDecode(await _getJson('assets/json/user.json'));
         await User().writeUser(user);
       }
