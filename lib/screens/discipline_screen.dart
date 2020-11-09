@@ -3,8 +3,9 @@ import 'package:easync_ihc/utilities/constants.dart';
 import 'package:flutter/material.dart';
 
 class DisciplineScreen extends StatefulWidget {
-  DisciplineScreen({this.discipline});
-  final Map<String, dynamic> discipline;
+  DisciplineScreen({this.content, this.json});
+  
+  final Map<String, dynamic> content, json;
   @override
   _DisciplineScreenState createState() => _DisciplineScreenState();
 }
@@ -42,8 +43,8 @@ class _DisciplineScreenState extends State<DisciplineScreen> {
                       context,
                       MaterialPageRoute(
                           builder: (context) => ContentScreen(
-                                content: widget.discipline['geografia']
-                                    ['capitulo 1'],
+                                content: widget.content['capitulo 1'],
+                                json: widget.json
                               )),
                     );
                   },
@@ -161,7 +162,7 @@ class _DisciplineScreenState extends State<DisciplineScreen> {
         leading: new IconButton(
           icon: new Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.pop(context, widget.discipline);
+            Navigator.pop(context);
           },
         ),
       ),
