@@ -1,7 +1,9 @@
 import 'dart:async';
 
 import 'package:easync_ihc/utilities/constants.dart';
+import 'package:easync_ihc/utilities/discipline.dart';
 
+import 'discipline_screen.dart';
 import 'profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:easync_ihc/utilities/auth.dart';
@@ -17,6 +19,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   var user;
+  var discipline;
 
   @override
   void initState() {
@@ -24,6 +27,12 @@ class _HomeScreenState extends State<HomeScreen> {
     User().readUser().then((value) {
       setState(() {
         user = value;
+      });
+    });
+    Discipline().saveFile().then((value) => null);
+    Discipline().readDiscipline().then((value) {
+      setState(() {
+        discipline = value;
       });
     });
   }
@@ -179,7 +188,15 @@ class _HomeScreenState extends State<HomeScreen> {
             Row(
               children: [
                 RaisedButton(
-                  onPressed: () => {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => DisciplineScreen(
+                                discipline: discipline,
+                              )),
+                    );
+                  },
                   elevation: 10.0,
                   padding: EdgeInsets.symmetric(
                     horizontal: 20.0,
@@ -199,7 +216,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 SizedBox(width: 10.0),
                 RaisedButton(
-                  onPressed: () => {},
+                  onPressed: null,
                   elevation: 10.0,
                   padding: EdgeInsets.symmetric(
                     horizontal: 20.0,
@@ -221,7 +238,7 @@ class _HomeScreenState extends State<HomeScreen> {
             Row(
               children: [
                 RaisedButton(
-                  onPressed: () => {},
+                  onPressed: null,
                   elevation: 10.0,
                   padding: EdgeInsets.symmetric(
                     horizontal: 20.0,
@@ -241,7 +258,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 SizedBox(width: 10.0),
                 RaisedButton(
-                  onPressed: () => {},
+                  onPressed: null,
                   elevation: 10.0,
                   padding: EdgeInsets.symmetric(
                     horizontal: 20.0,
@@ -263,7 +280,7 @@ class _HomeScreenState extends State<HomeScreen> {
             Row(
               children: [
                 RaisedButton(
-                  onPressed: () => {},
+                  onPressed: null,
                   elevation: 10.0,
                   padding: EdgeInsets.symmetric(
                     horizontal: 20.0,
@@ -283,7 +300,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 SizedBox(width: 10.0),
                 RaisedButton(
-                  onPressed: () => {},
+                  onPressed: null,
                   elevation: 10.0,
                   padding: EdgeInsets.symmetric(
                     horizontal: 20.0,
