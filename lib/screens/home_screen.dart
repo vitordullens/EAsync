@@ -170,12 +170,12 @@ class _HomeScreenState extends State<HomeScreen> {
         decoration: kBoxDecorationStyle,
         width: double.infinity,
         padding: EdgeInsets.symmetric(
-          horizontal: 20.0,
+          horizontal: 10.0,
           vertical: 10.0,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             Text(
               "Disciplinas",
@@ -186,6 +186,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             SizedBox(height: 10.0),
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 RaisedButton(
                   onPressed: () {
@@ -193,8 +194,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       context,
                       MaterialPageRoute(
                           builder: (context) => DisciplineScreen(
-                                discipline: discipline,
-                              )),
+                              content: discipline['geografia'],
+                              json: discipline)),
                     );
                   },
                   elevation: 10.0,
@@ -209,12 +210,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
                       Icon(Icons.streetview_outlined),
-                      SizedBox(width: 10.0),
+                      SizedBox(width: 5.0),
                       Text("Geografia   ")
                     ],
                   ),
                 ),
-                SizedBox(width: 10.0),
                 RaisedButton(
                   onPressed: null,
                   elevation: 10.0,
@@ -228,7 +228,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Row(
                     children: <Widget>[
                       Icon(Icons.color_lens),
-                      SizedBox(width: 10.0),
+                      SizedBox(width: 5.0),
                       Text("Artes           ")
                     ],
                   ),
@@ -236,6 +236,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
             ),
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 RaisedButton(
                   onPressed: null,
@@ -251,12 +252,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
                       Icon(Icons.colorize),
-                      SizedBox(width: 10.0),
+                      SizedBox(width: 5.0),
                       Text("Quimica      ")
                     ],
                   ),
                 ),
-                SizedBox(width: 10.0),
                 RaisedButton(
                   onPressed: null,
                   elevation: 10.0,
@@ -270,7 +270,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Row(
                     children: <Widget>[
                       Icon(Icons.bookmark),
-                      SizedBox(width: 10.0),
+                      SizedBox(width: 5.0),
                       Text("Português  ")
                     ],
                   ),
@@ -278,6 +278,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
             ),
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 RaisedButton(
                   onPressed: null,
@@ -293,12 +294,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
                       Icon(Icons.calculate),
-                      SizedBox(width: 10.0),
+                      SizedBox(width: 5.0),
                       Text("Matemática")
                     ],
                   ),
                 ),
-                SizedBox(width: 10.0),
                 RaisedButton(
                   onPressed: null,
                   elevation: 10.0,
@@ -312,7 +312,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Row(
                     children: <Widget>[
                       Icon(Icons.local_florist_rounded),
-                      SizedBox(width: 10.0),
+                      SizedBox(width: 5.0),
                       Text("Biologia      ")
                     ],
                   ),
