@@ -1,3 +1,4 @@
+import 'package:easync_ihc/screens/content_screen.dart';
 import 'package:easync_ihc/utilities/constants.dart';
 import 'package:flutter/material.dart';
 
@@ -9,6 +10,8 @@ class DisciplineScreen extends StatefulWidget {
 }
 
 class _DisciplineScreenState extends State<DisciplineScreen> {
+  var content;
+
   Widget _buildDisciplines() {
     return Container(
         height: 220.0,
@@ -34,7 +37,16 @@ class _DisciplineScreenState extends State<DisciplineScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 RaisedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ContentScreen(
+                                content: widget.discipline['geografia']
+                                    ['capitulo 1'],
+                              )),
+                    );
+                  },
                   elevation: 10.0,
                   padding: EdgeInsets.symmetric(
                     horizontal: 20.0,
@@ -165,8 +177,7 @@ class _DisciplineScreenState extends State<DisciplineScreen> {
             children: <Widget>[
               CircleAvatar(
                   radius: 120,
-                  backgroundImage: NetworkImage(
-                      'https://lh3.googleusercontent.com/proxy/cHRbQERuzEFS9eAmr2dN4jBgplKIp4uAzJagRcxre7N_VRFIkl-DR_ZQHmjhHE6g9JcDLGNOlzeZgapSZkTKJbr8Zhvqt_yJNeN4HJZyWmi2hhqJI_noSu1X6FgjQew-eXl3V1gBBfWMkQhmKxnxg5_Y')),
+                  backgroundImage: AssetImage('assets/images/geografia.jpg')),
               SizedBox(height: 50.0),
               _buildDisciplines(),
             ],

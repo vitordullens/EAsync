@@ -29,10 +29,10 @@ class _HomeScreenState extends State<HomeScreen> {
         user = value;
       });
     });
-    Discipline().saveFile().then((value) => null);
     Discipline().readDiscipline().then((value) {
       setState(() {
         discipline = value;
+        print(discipline);
       });
     });
   }
